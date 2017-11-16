@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/davecgh/go-spew/spew"
-	msf "github.com/mkwu/mysportsfeed"
+	msf "github.com/mkwu/go-mysportsfeed"
 )
 
 func main() {

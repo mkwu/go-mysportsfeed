@@ -2,7 +2,7 @@ package fixtures
 
 import (
 	"github.com/bluele/factory-go/factory"
-	"github.com/mkwu/mysportsfeed/models"
+	"github.com/mkwu/go-mysportsfeed/models"
 )
 
 var NBACumulativePlayerStatsFactory = factory.NewFactory(

@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/mkwu/mysportsfeed/models"
-	"github.com/mkwu/mysportsfeed/util/fixtures"
+	"github.com/mkwu/go-mysportsfeed/models"
+	"github.com/mkwu/go-mysportsfeed/util/fixtures"
 	"github.com/stretchr/testify/assert"
 )
 

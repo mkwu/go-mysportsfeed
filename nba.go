@@ -6,7 +6,7 @@ import (
 	"reflect"
 
 	"github.com/dghubble/sling"
-	"github.com/mkwu/mysportsfeed/models"
+	"github.com/mkwu/go-mysportsfeed/models"
 )
 
 const (
