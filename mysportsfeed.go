@@ -1,7 +1,7 @@
 package mysportsfeed
 
 import (
-	"fmt"
+	"log"
 	"net/http"
 	"reflect"
 	"strconv"
@@ -82,15 +82,21 @@ func Unmarshal(data map[string]interface{}, target interface{}) (err error) {
 					// the stat is in a name/value pair named #text
 					vals := stat[name].(map[string]interface{})
 					if v, ok := vals["#text"]; ok {
-						val = v.(string)
+						// all returned values are always strings unless it's null
+						if v != nil {
+							val = v.(string)
+						}
 					}
 				}
 			}
 		} else if section != "" {
 			// handle all non stat fields
 			if v, ok := data[section]; ok {
-				val = v.(map[string]interface{})[name].(string)
-				fmt.Printf("section=%s name=%s val=%+v\n", section, name, val)
+				// all returned values are always strings unless it's null
+				if v.(map[string]interface{})[name] != nil {
+					val = v.(map[string]interface{})[name].(string)
+				}
+
 			}
 		}
 		// map the value to its proper type
@@ -115,8 +121,15 @@ func Unmarshal(data map[string]interface{}, target interface{}) (err error) {
 			if !field.OverflowFloat(x) && err == nil {
 				field.SetFloat(x)
 			}
-		default:
+		case reflect.Bool:
+			x, err := strconv.ParseBool(val)
+			if err == nil {
+				field.SetBool(x)
+			}
+		case reflect.String:
 			field.SetString(val)
+		default:
+			log.Printf("unrecognized type %v, %+v\n", field.Kind(), val)
 		}
 	}
 	return
