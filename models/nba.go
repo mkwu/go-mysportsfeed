@@ -2,7 +2,6 @@ package models
 
 import (
 	"encoding/json"
-	"fmt"
 	"reflect"
 	"strconv"
 	"strings"
@@ -121,7 +120,6 @@ func (s *NBACumulativePlayerStats) MarshalJSON() ([]byte, error) {
 		case reflect.String:
 			tmp = field.String()
 		}
-		fmt.Printf("%s %s\n", section, name)
 		if section == "stats" {
 			d["stats"].(map[string]interface{})[name] = map[string]interface{}{
 				"#text": 0,
@@ -131,6 +129,5 @@ func (s *NBACumulativePlayerStats) MarshalJSON() ([]byte, error) {
 			d[section].(map[string]interface{})[name] = tmp
 		}
 	}
-	fmt.Printf("%+v\n", d)
 	return json.Marshal(d)
 }
