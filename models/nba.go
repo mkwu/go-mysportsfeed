@@ -8,6 +8,22 @@ import (
 	"strings"
 )
 
+type NBAPlayer struct {
+	Id           int64  `msf:"player:ID"`
+	LastName     string `msf:"player:LastName"`
+	FirstName    string `msf:"player:FirstName"`
+	JerseyNumber string `msf:"player:JerseyNumber"`
+	Position     string `msf:"player:Position"`
+	Height       string `msf:"player:Height"`
+	Weight       string `msf:"player:Weight"`
+	BirthDate    string `msf:"player:BirthDate"`
+	Age          int32  `msf:"player:Age"`
+	BirthCity    string `"msf:"player:BirthCity"`
+	BirthCountry string `"msf:"player:BirthCountry"`
+	IsRookie     bool   `"msf:"player:IsRookie"`
+	IsActive     bool
+}
+
 type NBACumulativePlayerStats struct {
 	PlayerId              int64   `msf:"player:ID"`
 	TeamId                int64   `msf:"team:ID"`
