@@ -14,16 +14,28 @@ func main() {
 	flag.Parse()
 
 	client := msf.NewClient(nil, *userPtr, *passPtr)
-	opts := msf.CumulativePlayerStatsOptions{
-		Limit: 10,
-		Team:  "chi",
-	}
-	data, err := client.NBA.CumulativePlayerStats("2017-2018-regular", opts)
+	r1, err := client.NBA.CumulativePlayerStats("2017-2018-regular",
+		msf.CumulativePlayerStatsOptions{
+			Limit: 10,
+			Team:  "chi",
+		})
 	if err != nil {
 		fmt.Println(err)
 	} else {
-		for _, p := range data {
+		for _, p := range r1 {
 			spew.Dump(p)
 		}
 	}
+	r2, err := client.NBA.ActivePlayers("2017-2018-regular",
+		msf.ActivePlayersOptions{
+			Limit: 10,
+		})
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		for _, p := range r2 {
+			spew.Dump(p)
+		}
+	}
+
 }
